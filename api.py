@@ -3,6 +3,12 @@ from flask import Flask, jsonify
 app = Flask(__name__)
 
 
+@app.route('/api/v1.0/', methods='GET'.split())
+def get_readme():
+    with open('README.md') as readme:
+        return jsonify({'readme': readme.readlines()})
+
+
 @app.route('/api/v1.0/status', methods='GET'.split())
 def get_status():
     return jsonify({'status': 'critical'})
