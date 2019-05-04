@@ -1,5 +1,5 @@
 from flask import Flask, jsonify
-from flood_system_manager import SystemManager
+from core.univesp.src.flood_system_manager import SystemManager
 
 app = Flask(__name__)
 system = SystemManager()

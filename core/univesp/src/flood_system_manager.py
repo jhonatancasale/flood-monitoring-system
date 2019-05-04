@@ -1,4 +1,4 @@
-from database import Connection
+from core.univesp.src.database import Connection
 
 ### TODO
 # - [ ] Use a Station class
