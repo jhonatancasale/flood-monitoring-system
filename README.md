@@ -1,17 +1,21 @@
-Endpoints: (GET)
-[prefix] = /api/v1.0
+## Endpoints
 
-[prefix]/status # the status of the whole system
-[prefix]/stations 
-[prefix]/stations/<id>
-[prefix]/stations/<id>/minutes/<int:minutes>
-[prefix]/stations/minutes/<int:minutes>
-[prefix]/stations/<id>/dates/<date:from>/
-[prefix]/stations/dates/<date:from>/
-[prefix]/stations/<id>/dates/<date:from>/<date:to>
-[prefix]/stations/dates/<date:from>/<date:to>
+### GET
+```
+/api/v1.0/status # the status of the whole system
+/api/v1.0/stations 
+/api/v1.0/stations/<id>
+/api/v1.0/stations/<id>/minutes/<int:minutes>
+/api/v1.0/stations/minutes/<int:minutes>
+/api/v1.0/stations/<id>/dates/<date:from>/
+/api/v1.0/stations/dates/<date:from>/
+/api/v1.0/stations/<id>/dates/<date:from>/<date:to>
+/api/v1.0/stations/dates/<date:from>/<date:to>
+```
 
 
-(POST)
-[prefix]/stations/<id> # to new station
-[prefix]/stations/<id>/measure # to new measurement
+### POST
+```
+/api/v1.0/stations/<id> # to new station
+/api/v1.0/stations/<id>/measure # to new measurement
+```
