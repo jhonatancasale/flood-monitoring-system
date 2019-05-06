@@ -23,7 +23,7 @@ def get_stations():
 
 @app.route('/api/v1.0/stations/<int:station_id>', methods='GET'.split())
 def get_station(station_id: int):
-    return jsonify({'stations': system.get_station(station_id)})
+    return jsonify({'station': system.get_station(station_id)})
 
 
 @app.route('/api/v1.0/stations/<int:station_id>/minutes/<int:minutes>', methods='GET'.split())
@@ -46,14 +46,14 @@ def get_all_from_date(from_date: str):
     return jsonify({'data:': system.get_all_from_date(from_date)})
 
 
-@app.route('/api/v1.0/stations/<int:station_id>/date/<string:from_date>/<string:to_date>', methods='GET'.split())
+@app.route('/api/v1.0/stations/<int:station_id>/dates/<string:from_date>/<string:to_date>', methods='GET'.split())
 def get_from_to_date(station_id: int, from_date: str, to_date: str):
     return jsonify(
         {'data': system.get_from_to_date(station_id, from_date, to_date)}
     )
 
 
-@app.route('/api/v1.0/stations/date/<string:from_date>/<string:to_date>', methods='GET'.split())
+@app.route('/api/v1.0/stations/dates/<string:from_date>/<string:to_date>', methods='GET'.split())
 def get_all_from_to_date(from_date: str, to_date: str):
     return jsonify(
         {'data': system.get_all_from_to_date(from_date, to_date)}

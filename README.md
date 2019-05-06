@@ -7,8 +7,8 @@
 /api/v1.0/stations/<id>
 /api/v1.0/stations/<id>/minutes/<int:minutes>
 /api/v1.0/stations/minutes/<int:minutes>
-/api/v1.0/stations/<id>/dates/<date:from>/
-/api/v1.0/stations/dates/<date:from>/
+/api/v1.0/stations/<id>/date/<date:from>/
+/api/v1.0/stations/date/<date:from>/
 /api/v1.0/stations/<id>/dates/<date:from>/<date:to>
 /api/v1.0/stations/dates/<date:from>/<date:to>
 ```
