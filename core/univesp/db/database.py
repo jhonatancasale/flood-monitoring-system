@@ -3,6 +3,7 @@ from influxdb import InfluxDBClient
 from core.univesp.db.properties import config
 from core.univesp.utils.logger import get_logger
 from requests.exceptions import ConnectionError
+from influxdb.exceptions import InfluxDBClientError
 
 
 db_logger = get_logger('connection_logger')
@@ -105,4 +106,26 @@ class Connection:
                 AND "time" < {to_date}'
 
         return self.simple_select_query(query)
+
+    def post_new_measurement(self, data) -> bool:
+        points = [
+            {
+                'measurement': 'station',
+                'tags': {
+                    'id': int(data['id']),
+                    'type': data['type'],
+                },
+                'fields': {
+                    'value': float(data['value']),
+                    'sys_status': data['sys_status'],
+                    'battery': float(data['battery']),
+                },
+            }
+        ]
+
+        try:
+            return self.client.write_points(points)
+        except InfluxDBClientError as error:
+            db_logger.error(error)
+            return None
 

@@ -16,6 +16,5 @@
 
 ### POST
 ```
-/api/v1.0/stations/<id> # to new station
 /api/v1.0/stations/<id>/measure # to new measurement
 ```

@@ -1,4 +1,5 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request, Response
+
 from core.univesp.src.flood_system_manager import SystemManager
 
 app = Flask(__name__)
@@ -58,6 +59,17 @@ def get_all_from_to_date(from_date: str, to_date: str):
     return jsonify(
         {'data': system.get_all_from_to_date(from_date, to_date)}
     )
+
+
+@app.route('/api/v1.0/stations/<int:station_id>/measure', methods='POST'.split())
+def insert_new_measurement_from(station_id: int):
+    data = dict(request.form)
+
+    if system.post_new_measurement(data):
+        return Response('success', status=201)
+    else:
+        return Response('failure', status=400)
+
 
 
 if __name__ == '__main__':

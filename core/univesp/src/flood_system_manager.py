@@ -70,3 +70,6 @@ class SystemManager:
 
         return self.conn.get_all_from_to_date(from_date, to_date)
 
+    def post_new_measurement(self, data):
+        return self.conn.post_new_measurement(data)
+
