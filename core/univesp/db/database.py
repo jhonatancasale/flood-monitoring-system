@@ -12,7 +12,11 @@ db_logger = get_logger('connection_logger')
 class Connection:
     def __init__(self):
         self.client = InfluxDBClient(
-            'localhost', 8086, 'root', 'root', config["database_name"]
+            config["host"],
+            config["port"],
+            config["user"],
+            config["pass"],
+            config["database_name"]
         )
 
 

@@ -23,7 +23,13 @@ def create_database(database_name: str, client: InfluxDBClient) -> bool:
 def main():
     db_logger.info(f'Setting up database {config["database_name"]!r}:[Start]')
 
-    client = InfluxDBClient('localhost', 8086, 'root', 'root', 'example')
+    client = InfluxDBClient(
+            config["host"],
+            config["port"],
+            config["user"],
+            config["pass"],
+            config["database_name"]
+        )
     try:
         client.query('show databases')
     except ConnectionError as error:

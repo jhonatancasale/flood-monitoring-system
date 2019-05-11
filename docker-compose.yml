@@ -1,0 +1,45 @@
+version: "3.7"
+services:
+  flood-server:
+    container_name: flood-server
+    build: .
+    ports:
+      - "80:80"
+    networks:
+      - flood-monitoring-system
+    depends_on:
+      - influxdb
+
+  influxdb:
+    container_name: influxdb
+    image: influxdb
+    ports:
+      - "8086:8086"
+    volumes:
+      - $HOME/dockerdata/influxdb/:/var/lib/influxdb
+    networks:
+      - flood-monitoring-system
+    configs:
+      - influxdb_conf
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana
+    user: ${ID}
+    ports:
+      - "3000:3000"
+    networks:
+      - flood-monitoring-system
+    volumes:
+      - $HOME/dockerdata/grafana:/var/lib/grafana
+    environment:
+      - GF_SERVER_ROOT_URL=http://grafana.server.name
+      - GF_SECURITY_ADMIN_PASSWORD=secret
+    depends_on:
+      - influxdb
+
+networks:
+  flood-monitoring-system:
+configs:
+  influxdb_conf:
+    file: /etc/influxdb/influxdb.conf
